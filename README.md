@@ -1,6 +1,6 @@
 ## Хороший проект на fastapi на пример, из которого можно брать паттерны и примеры кода.
 
-### Первоначалньый источник:
+### Первоначальный источник:
 
 https://www.youtube.com/watch?v=7AMjmCTumuo&list=PL-osiE80TeTsak-c-QsVeg0YYG_0TeyXI
 
