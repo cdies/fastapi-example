@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bloguser
+      POSTGRES_PASSWORD: blogpass
+      POSTGRES_DB: blog
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql:rw
+
+  fastapi_app:
+    build:
+      context: .
+    container_name: fastapi_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    # exec replaces shell so fastapi receives SIGTERM for clean shutdown
+    command:
+      [
+        "/bin/sh",
+        "-c",
+        'exec fastapi run --host 0.0.0.0 --port "$PORT" --proxy-headers --forwarded-allow-ips ''*''',
+      ]
+    depends_on:
+      - db
+    volumes:
+      - ./media:/app/media:rw
+    network_mode: host
