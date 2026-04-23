@@ -8,8 +8,10 @@ https://www.youtube.com/watch?v=7AMjmCTumuo&list=PL-osiE80TeTsak-c-QsVeg0YYG_0Te
 
 fastapi работет на 8000 порту, postgres на 5432 порту
 
+```bash
 sudo docker compose up --build
 
 uv run alembic upgrade head
 
 uv run fastapi dev main.py
+```
